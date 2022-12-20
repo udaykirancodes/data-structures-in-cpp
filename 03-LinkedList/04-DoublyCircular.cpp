@@ -68,7 +68,9 @@ Node *deleteFirstNode(Node *head){
 	}
 	else{
 		Node *newHead = head->next;
-		newHead->prev = nullptr;
+		Node *tail = head->prev;
+		tail->next = newHead; 
+		newHead->prev = tail;
 		delete head;
 		return newHead;
 	}
@@ -83,15 +85,11 @@ Node *deleteLastNode(Node *head){
 		return nullptr;
 	}
 	else{
-		Node *p = head; 
-		Node *q = head->next;
-		// q is last node 
-		while(q->next != nullptr){
-			p = p->next;
-			q = q->next;
-		}
-		p->next = nullptr;
-		delete q;
+		Node *tail = head->prev;
+		Node *newTail = tail->prev; 
+		delete tail; 
+		newTail->next = head;
+		head->prev = newTail;
 		return head; 
 	}
 }
@@ -102,10 +100,10 @@ int main(){
 	head = insertAtHead(head,-5);
 	head = insertAtHead(head,-10);
 	head = insertAtTail(head,10);
-	head = insertAtTail(head,15);
-	head = insertAtTail(head,20);
-	// head = deleteFirstNode(head);
-	// head = deleteLastNode(head);
+	// head = insertAtTail(head,15);
+	// head = insertAtTail(head,20);
+	head = deleteFirstNode(head);
+	head = deleteLastNode(head);
 	print(head);
 	return 0;
 }

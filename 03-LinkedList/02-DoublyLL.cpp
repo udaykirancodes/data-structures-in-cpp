@@ -87,13 +87,30 @@ Node *deleteLastNode(Node *head){
 		return head; 
 	}
 }
+
+// Reverse Linked List 
+Node *reverse(Node *head){
+	Node *prev = nullptr;
+	Node *current = head; 
+	Node *next = current;
+	while(current != nullptr){
+		prev = current->prev;
+		current->prev = current->next;
+		current->next = prev; 
+		// moving with prev pointer because we have changed links
+		current = current->prev;  
+	}
+	return prev->prev;
+}
 int main(){
 	Node *head = nullptr;
 	head = insertAtHead(head,5);
-	// head = insertAtHead(head,0);
-	// head = insertAtTail(head,10);
+	head = insertAtHead(head,0);
+	head = insertAtTail(head,10);
 	// head = deleteFirstNode(head);
 	// head = deleteLastNode(head);
+
 	print(head);
+	print(reverse(head));
 	return 0;
 }
