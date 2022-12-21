@@ -1,8 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Stack{
-public:
+struct Stack{
 	int top;
 	int size;
 	int *arr;
