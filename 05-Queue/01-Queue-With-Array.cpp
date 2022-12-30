@@ -9,7 +9,7 @@ struct Queue{
 	// constructor 
 	Queue(int s){
 		front = rear = -1;
-		size = s;
+		size = s; 
 		arr = new int[s]; 
 	}
 
@@ -56,6 +56,6 @@ struct Queue{
 int main(){
 	Queue *q = new Queue(3);
 	q->enqueue(10);
-	cout<<q-><<endl;
+	cout<<q->size<<endl;
 	return 0;
 }
